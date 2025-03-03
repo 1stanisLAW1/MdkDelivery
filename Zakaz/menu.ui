@@ -19,6 +19,12 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+background-color:rgb(0, 0, 0);
+color:rgb(255, 255, 255);
+}</string>
+  </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
@@ -28,8 +34,36 @@
      <height>811</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QTabWidget {
+    background-color: black; /* Фон всего QTabWidget */
+}
+
+QTabWidget::pane {
+    border: 1px solid gray; /* Граница вокруг содержимого вкладок */
+    background-color: black; /* Фон содержимого вкладок */
+}
+
+QTabBar::tab {
+    color: white; /* Цвет текста вкладки */
+    background-color: black; /* Фон вкладки */
+    border: 1px solid white; /* Граница вкладки */
+    padding: 10px; /* Отступы внутри вкладки */
+    margin: 0px; /* Внешние отступы вкладки */
+}
+
+QTabBar::tab:selected {
+    background-color: gray; /* Фон выбранной вкладки */
+    color: black; /* Цвет текста выбранной вкладки */
+}
+
+QTabBar::tab:hover {
+    background-color: #333; /* Фон вкладки при наведении */
+    color: white; /* Цвет текста при наведении */
+}</string>
+   </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -43,6 +77,34 @@
        <width>551</width>
        <height>781</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTabWidget {
+    background-color: black; /* Фон всего QTabWidget */
+}
+
+QTabWidget::pane {
+    border: 1px solid gray; /* Граница вокруг содержимого вкладок */
+    background-color: black; /* Фон содержимого вкладок */
+}
+
+QTabBar::tab {
+    color: white; /* Цвет текста вкладки */
+    background-color: black; /* Фон вкладки */
+    border: 1px solid white; /* Граница вкладки */
+    padding: 10px; /* Отступы внутри вкладки */
+    margin: 0px; /* Внешние отступы вкладки */
+}
+
+QTabBar::tab:selected {
+    background-color: gray; /* Фон выбранной вкладки */
+    color: black; /* Цвет текста выбранной вкладки */
+}
+
+QTabBar::tab:hover {
+    background-color: #333; /* Фон вкладки при наведении */
+    color: white; /* Цвет текста при наведении */
+}</string>
      </property>
      <property name="currentIndex">
       <number>0</number>
@@ -65,6 +127,11 @@
          <family>Yu Gothic UI Semibold</family>
          <pointsize>18</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+color:rgb(255, 255, 255);
+}</string>
        </property>
        <property name="title">
         <string>Menu</string>
@@ -103,6 +170,11 @@
          <pointsize>18</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+color:rgb(255, 255, 255);
+}</string>
+       </property>
        <property name="title">
         <string>Menu</string>
        </property>
@@ -129,6 +201,11 @@
          <family>Yu Gothic UI Semibold</family>
          <pointsize>18</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+color:rgb(255, 255, 255);
+}</string>
        </property>
        <property name="title">
         <string>Menu</string>
@@ -158,6 +235,11 @@
        <family>Yu Gothic UI Semibold</family>
        <pointsize>18</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox{
+color:rgb(255, 255, 255);
+}</string>
      </property>
      <property name="title">
       <string>Корзина</string>
@@ -196,6 +278,12 @@
        <pointsize>18</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox{
+color:rgb(255, 255, 255);
+background-color:rgb(0, 0, 0);
+}</string>
+     </property>
      <property name="title">
       <string>Profile</string>
      </property>
@@ -232,9 +320,17 @@
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic UI Semibold</family>
-        <pointsize>30</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>28</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	font: 28pt &quot;Segoe UI&quot;;
+color:rgb(255, 255, 255);
+}</string>
       </property>
       <property name="text">
        <string>A</string>
@@ -251,9 +347,17 @@
       </property>
       <property name="font">
        <font>
-        <family>Yu Gothic UI Semibold</family>
-        <pointsize>18</pointsize>
+        <family>Segoe UI</family>
+        <pointsize>24</pointsize>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLabel{
+	font: 24pt &quot;Segoe UI&quot;;
+color:rgb(255, 255, 255);
+}</string>
       </property>
       <property name="text">
        <string>История заказов</string>
@@ -271,15 +375,58 @@
         <height>521</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Yu Gothic UI Semibold</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">  QTableView {
+  color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    gridline-color: rgb(128, 128, 128);
+    alternate-background-color: rgb(30, 30, 30);
+}
+
+QTableView::Header {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+}
+
+QTableView::item:selected {
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+}</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="pushButton_10">
       <property name="geometry">
        <rect>
-        <x>350</x>
+        <x>290</x>
         <y>100</y>
-        <width>151</width>
-        <height>41</height>
+        <width>204</width>
+        <height>34</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+color:rgb(255, 255, 255);
+background-color:rgb(0, 0, 0);
+border: 2px solid rgb(124, 124, 124);
+solid: rgb(255, 255, 255);
+border-radius:15px;
+max-height:30px;
+max-width:200px;
+min-height:30px;
+min-width:200px;
+}</string>
       </property>
       <property name="text">
        <string>Setting</string>

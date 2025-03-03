@@ -114,6 +114,7 @@ void MenU::korzina()
 
     // Создаем контейнер для содержимого
     QWidget *contentWidget = new QWidget(scrollArea);
+
     QVBoxLayout *mainLayout = new QVBoxLayout(contentWidget);
 
     // Создаем QToolBox для организации содержимого
@@ -123,7 +124,6 @@ void MenU::korzina()
     QWidget *allPizzaWidget = new QWidget();
     QVBoxLayout *allPizzaLayout = new QVBoxLayout(allPizzaWidget);
 
-    // Запрос к базе данных
     QSqlQuery query(db1);
     if (!query.prepare("SELECT id, name, price, path FROM korzin")) {
         qDebug() << "Ошибка подготовки запроса:" << query.lastError().text();
@@ -135,7 +135,6 @@ void MenU::korzina()
         return;
     }
 
-    // Обработка результатов запроса
     while (query.next()) {
         QString imagePath = executablePath + query.value(3).toString();
         QImage image(imagePath);
@@ -150,29 +149,23 @@ void MenU::korzina()
         QWidget *pizzaWidget = new QWidget(allPizzaWidget);
         QVBoxLayout *pizzaLayout = new QVBoxLayout(pizzaWidget);
 
-        // Изображение пиццы
         QLabel *imageLabel = new QLabel(pizzaWidget);
         imageLabel->setPixmap(pixmap);
         imageLabel->setScaledContents(true);
         imageLabel->setMinimumSize(430, 250);
         imageLabel->setMaximumSize(450, 250);
 
-        // Цена пиццы
         QLabel *priceLabel = new QLabel(query.value(2).toString(), pizzaWidget);
         priceLabel->setMinimumSize(430, 40);
         priceLabel->setMaximumSize(430, 40);
         priceLabel->setAlignment(Qt::AlignCenter);
 
-        // Название пиццы
         QLabel *nameLabel = new QLabel(query.value(1).toString(), pizzaWidget);
         nameLabel->setFixedSize(430, 40);
         nameLabel->setAlignment(Qt::AlignCenter);
 
-        // Кнопки
         QPushButton *addBtn = new QPushButton("Купить");
         QPushButton *deleteBtn = new QPushButton("Удалить");
-        addBtn->setFixedSize(430, 40);
-        deleteBtn->setFixedSize(430, 40);
 
         int id = query.value(0).toInt();
         connect(deleteBtn, &QPushButton::clicked, [this, id]() { deleteBtN(id); });
@@ -187,13 +180,26 @@ void MenU::korzina()
 
         // Добавляем виджет пиццы в общий макет
         allPizzaLayout->addWidget(pizzaWidget);
+
+        addBtn->setStyleSheet("QPushButton { background-color: black; color:white; border: 2px solid rgb(255, 255, 255);solid: rgb(255, 255, 255);"
+                              "border-radius:15px;"
+                              "max-height:40px;"
+                              "max-width:430px;"
+                              "min-height:40px;"
+                              "min-width:430px;}");
+        deleteBtn->setStyleSheet("QPushButton { background-color: black; color:white; border: 2px solid rgb(255, 255, 255);solid: rgb(255, 255, 255);"
+                                 "border-radius:15px;"
+                                 "max-height:40px;"
+                                 "max-width:430px;"
+                                 "min-height:40px;"
+                                 "min-width:430px;}");
     }
 
     // Устанавливаем макет для allPizzaWidget
     allPizzaWidget->setLayout(allPizzaLayout);
 
     // Добавляем allPizzaWidget в toolBox
-    toolBox->addItem(allPizzaWidget, "Пиццы");
+    toolBox->addItem(allPizzaWidget, "Корзина");
 
     // Добавляем toolBox в основной макет
     mainLayout->addWidget(toolBox);
@@ -208,6 +214,69 @@ void MenU::korzina()
     QVBoxLayout *layout = new QVBoxLayout(ui->widget_2);
     layout->addWidget(scrollArea);
     ui->widget_2->setLayout(layout);
+
+    scrollArea->setStyleSheet(
+        "QScrollArea {"
+        "    background-color: black;"
+        "    color: white;"
+        "}"
+        "QScrollBar:vertical {"
+        "    background-color: black;"
+        "    width: 15px;"
+        "    margin: 0px 0px 0px 0px;"
+        "}"
+        "QScrollBar::handle:vertical {"
+        "    background-color: white;"
+        "    min-height: 20px;"
+        "    border-radius: 7px;"
+        "}"
+        "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {"
+        "    background-color: black;"
+        "    height: 0px;"
+        "}"
+        "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
+        "    background-color: black;"
+        "}"
+        "QScrollBar:horizontal {"
+        "    background-color: black;"
+        "    height: 15px;"
+        "    margin: 0px 0px 0px 0px;"
+        "}"
+        "QScrollBar::handle:horizontal {"
+        "    background-color: white;"
+        "    min-width: 20px;"
+        "    border-radius: 7px;"
+        "}"
+        "QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {"
+        "    background-color: black;"
+        "    width: 0px;"
+        "}"
+        "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {"
+        "    background-color: black;"
+        "}"
+        );
+
+    toolBox->setStyleSheet(
+        "QToolBox {"
+        "    background-color: black;"
+        "    color: white;"
+        "}"
+        "QToolBox::tab {"
+        "    background-color: black;"
+        "    color: white;"
+        "    border: 1px solid white;"
+        "}"
+        "QToolBox::tab:selected {"
+        "    background-color: white;"
+        "    color: black;"
+        "}"
+        );
+
+    contentWidget->setStyleSheet("QWidget{background-color: black;"
+                                 "color: white;}");
+    allPizzaWidget->setStyleSheet("QWidget{background-color: black;"
+                                  "color: white;}");
+
 }
 
 void MenU::deleteBtN(int idDel)
@@ -217,7 +286,7 @@ void MenU::deleteBtN(int idDel)
     query.bindValue(":id", idDel);
 
     if (!query.exec()) {
-        QMessageBox::critical(this, "Ошибка", "Не удалось удалить запись из базы данных: " + query.lastError().text());
+        QMessageBox::critical(this, "Не удалось удалить запись из базы данных: " + query.lastError().text(), 0);
         return;
     }
 
@@ -230,6 +299,7 @@ korzina();
 void MenU::addKorzina()
 {
     QPushButton *btn = qobject_cast<QPushButton *>(sender());
+
     if (!btn) {
         qDebug() << "Error: sender is not a QPushButton";
         return;
@@ -291,6 +361,13 @@ void MenU::addKorzina()
     } else {
         qDebug() << "Transaction error: " << db2.lastError().text() << " | " << db1.lastError().text();
     }
+
+    btn->setStyleSheet("QPushButton { background-color: black; color:white; border: 2px solid rgb(255, 255, 255);solid: rgb(255, 255, 255);"
+                       "border-radius:15px;"
+                       "max-height:40px;"
+                       "max-width:430px;"
+                       "min-height:40px;"
+                       "min-width:430px;}");
 }
 
 void MenU::AddBtN(int idAdd)
@@ -369,6 +446,7 @@ void MenU::compost()
 
     QString executablePath = QCoreApplication::applicationDirPath();
     QScrollArea *scrollArea = new QScrollArea(ui->widget); // widget это виджет в ui. Если нет, то this.
+
     scrollArea->setWidgetResizable(true);
     QWidget *contentWidget = new QWidget(scrollArea); //  Родитель - scrollArea
     QVBoxLayout *mainLayout = new QVBoxLayout(contentWidget);
@@ -409,7 +487,7 @@ void MenU::compost()
             label2->setAlignment(Qt::AlignCenter);
 
             QPushButton *button = new QPushButton(query.value(1).toString(), pizzaWidget); //  Родитель - pizzaWidget
-            button->setFixedSize(450, 40);
+
 
             connect(button, &QPushButton::clicked, this, &MenU::addKorzina); // Используйте &MenU::addKorzina
 
@@ -419,6 +497,12 @@ void MenU::compost()
             pizzaWidget->setLayout(pizzaLayout);
 
             allPizzaLayout->addWidget(pizzaWidget); // Добавляем виджет пиццы во весь виджет
+            button->setStyleSheet("QPushButton { background-color: black; color:white; border: 2px solid rgb(255, 255, 255);solid: rgb(255, 255, 255);"
+                                  "border-radius:15px;"
+                                  "max-height:40px;"
+                                  "max-width:430px;"
+                                  "min-height:40px;"
+                                  "min-width:430px;}");
         }
         allPizzaWidget->setLayout(allPizzaLayout); // Set the layout for the allPizzaWidget
 
@@ -435,6 +519,66 @@ void MenU::compost()
         layout->addWidget(scrollArea);
         ui->widget->setLayout(layout);
     }
+
+    scrollArea->setStyleSheet(
+        "QScrollArea {"
+        "    background-color: black;"
+        "    color: white;"
+        "}"
+        "QScrollBar:vertical {"
+        "    background-color: black;"
+        "    width: 15px;"
+        "    margin: 0px 0px 0px 0px;"
+        "}"
+        "QScrollBar::handle:vertical {"
+        "    background-color: white;"
+        "    min-height: 20px;"
+        "    border-radius: 7px;"
+        "}"
+        "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {"
+        "    background-color: black;"
+        "    height: 0px;"
+        "}"
+        "QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {"
+        "    background-color: black;"
+        "}"
+        "QScrollBar:horizontal {"
+        "    background-color: black;"
+        "    height: 15px;"
+        "    margin: 0px 0px 0px 0px;"
+        "}"
+        "QScrollBar::handle:horizontal {"
+        "    background-color: white;"
+        "    min-width: 20px;"
+        "    border-radius: 7px;"
+        "}"
+        "QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {"
+        "    background-color: black;"
+        "    width: 0px;"
+        "}"
+        "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {"
+        "    background-color: black;"
+        "}"
+        );
+    toolBox->setStyleSheet(
+        "QToolBox {"
+        "    background-color: black;"
+        "    color: white;"
+        "}"
+        "QToolBox::tab {"
+        "    background-color: black;"
+        "    color: white;"
+        "    border: 1px solid white;"
+        "}"
+        "QToolBox::tab:selected {"
+        "    background-color: white;"
+        "    color: black;"
+        "}"
+        );
+    allPizzaWidget->setStyleSheet("QWidget{background-color: black;"
+                                  "color: white;}");
+    contentWidget->setStyleSheet("QWidget{background-color: black;"
+                                 "color: white;}");
 }
 
 
@@ -465,6 +609,7 @@ void MenU::setImage()
     QString log = stream.readAll();
     if (log.isEmpty()) {
         QMessageBox msgBox;
+        msgBox.setStyleSheet("QMessageBox { background-color: black; color:white;}");
         msgBox.setWindowTitle("Ошибка!");
         msgBox.setText("Файл с именем пуст: " + filePath);
         msgBox.exec();

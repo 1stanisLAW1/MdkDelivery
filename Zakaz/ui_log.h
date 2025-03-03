@@ -47,6 +47,10 @@ public:
         if (Log->objectName().isEmpty())
             Log->setObjectName("Log");
         Log->resize(389, 295);
+        Log->setStyleSheet(QString::fromUtf8("QDialog{\n"
+"background-color:rgb(0, 0, 0);\n"
+"color:white\n"
+"}"));
         horizontalLayoutWidget = new QWidget(Log);
         horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
         horizontalLayoutWidget->setGeometry(QRect(70, 240, 251, 41));
@@ -55,21 +59,50 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         continueBtn = new QPushButton(horizontalLayoutWidget);
         continueBtn->setObjectName("continueBtn");
+        QFont font;
+        font.setPointSize(14);
+        continueBtn->setFont(font);
+        continueBtn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:rgb(255, 255, 255);\n"
+"background-color:rgb(0, 0, 0);\n"
+"border: 2px solid rgb(124, 124, 124);\n"
+"solid: rgb(255, 255, 255);\n"
+"border-radius:15px;\n"
+"max-height:30px;\n"
+"max-width:80px;\n"
+"min-height:30px;\n"
+"min-width:80px;\n"
+"}"));
 
         horizontalLayout->addWidget(continueBtn);
 
         regBtn = new QPushButton(horizontalLayoutWidget);
         regBtn->setObjectName("regBtn");
+        regBtn->setFont(font);
+        regBtn->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"color:rgb(255, 255, 255);\n"
+"background-color:rgb(0, 0, 0);\n"
+"border: 2px solid rgb(124, 124, 124);\n"
+"solid: rgb(255, 255, 255);\n"
+"border-radius:15px;\n"
+"max-height:30px;\n"
+"max-width:1200px;\n"
+"min-height:30px;\n"
+"min-width:80px;\n"
+"}"));
 
         horizontalLayout->addWidget(regBtn);
 
         groupBox = new QGroupBox(Log);
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(10, 0, 371, 231));
-        QFont font;
-        font.setFamilies({QString::fromUtf8("Yu Gothic UI Semibold")});
-        font.setPointSize(16);
-        groupBox->setFont(font);
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Yu Gothic UI Semibold")});
+        font1.setPointSize(16);
+        groupBox->setFont(font1);
+        groupBox->setStyleSheet(QString::fromUtf8("QGroupBox{\n"
+"color:rgb(255, 255, 255);\n"
+"}"));
         horizontalLayoutWidget_3 = new QWidget(groupBox);
         horizontalLayoutWidget_3->setObjectName("horizontalLayoutWidget_3");
         horizontalLayoutWidget_3->setGeometry(QRect(10, 170, 351, 51));
@@ -78,11 +111,30 @@ public:
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
         label_4 = new QLabel(horizontalLayoutWidget_3);
         label_4->setObjectName("label_4");
+        label_4->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font: 14pt \"Segoe UI\";\n"
+"color:rgb(255, 255, 255);\n"
+"}"));
 
         horizontalLayout_5->addWidget(label_4);
 
         lineEdit_4 = new QLineEdit(horizontalLayoutWidget_3);
         lineEdit_4->setObjectName("lineEdit_4");
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Segoe UI")});
+        font2.setPointSize(14);
+        lineEdit_4->setFont(font2);
+        lineEdit_4->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"color:rgb(255, 255, 255);\n"
+"background-color:rgb(0, 0, 0);\n"
+"border: 2px solid rgb(124, 124, 124);\n"
+"solid: rgb(255, 255, 255);\n"
+"border-radius:15px;\n"
+"max-height:30px;\n"
+"max-width:280px;\n"
+"min-height:30px;\n"
+"min-width:80px;\n"
+"}"));
         lineEdit_4->setEchoMode(QLineEdit::EchoMode::Normal);
 
         horizontalLayout_5->addWidget(lineEdit_4);
@@ -95,11 +147,27 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(horizontalLayoutWidget_2);
         label->setObjectName("label");
+        label->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font: 14pt \"Segoe UI\";\n"
+"color:rgb(255, 255, 255);\n"
+"}"));
 
         horizontalLayout_2->addWidget(label);
 
         lineEdit = new QLineEdit(horizontalLayoutWidget_2);
         lineEdit->setObjectName("lineEdit");
+        lineEdit->setFont(font2);
+        lineEdit->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"color:rgb(255, 255, 255);\n"
+"background-color:rgb(0, 0, 0);\n"
+"border: 2px solid rgb(124, 124, 124);\n"
+"solid: rgb(255, 255, 255);\n"
+"border-radius:15px;\n"
+"max-height:30px;\n"
+"max-width:300px;\n"
+"min-height:30px;\n"
+"min-width:80px;\n"
+"}"));
 
         horizontalLayout_2->addWidget(lineEdit);
 
@@ -111,11 +179,27 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         label_2 = new QLabel(horizontalLayoutWidget_4);
         label_2->setObjectName("label_2");
+        label_2->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	font: 14pt \"Segoe UI\";\n"
+"color:rgb(255, 255, 255);\n"
+"}"));
 
         horizontalLayout_3->addWidget(label_2);
 
         lineEdit_2 = new QLineEdit(horizontalLayoutWidget_4);
         lineEdit_2->setObjectName("lineEdit_2");
+        lineEdit_2->setFont(font2);
+        lineEdit_2->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"color:rgb(255, 255, 255);\n"
+"background-color:rgb(0, 0, 0);\n"
+"border: 2px solid rgb(124, 124, 124);\n"
+"solid: rgb(255, 255, 255);\n"
+"border-radius:15px;\n"
+"max-height:30px;\n"
+"max-width:300px;\n"
+"min-height:30px;\n"
+"min-width:80px;\n"
+"}"));
 
         horizontalLayout_3->addWidget(lineEdit_2);
 
@@ -131,9 +215,9 @@ public:
         continueBtn->setText(QCoreApplication::translate("Log", "back", nullptr));
         regBtn->setText(QCoreApplication::translate("Log", "registration", nullptr));
         groupBox->setTitle(QCoreApplication::translate("Log", "Registration", nullptr));
-        label_4->setText(QCoreApplication::translate("Log", "Password", nullptr));
-        label->setText(QCoreApplication::translate("Log", "Login      ", nullptr));
-        label_2->setText(QCoreApplication::translate("Log", "Name     ", nullptr));
+        label_4->setText(QCoreApplication::translate("Log", " Password", nullptr));
+        label->setText(QCoreApplication::translate("Log", " Login      ", nullptr));
+        label_2->setText(QCoreApplication::translate("Log", " Name     ", nullptr));
     } // retranslateUi
 
 };
